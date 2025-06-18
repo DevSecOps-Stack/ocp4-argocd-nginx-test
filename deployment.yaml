@@ -1,11 +1,7 @@
-# deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
-  namespace: nginx-argo-test
-  labels:
-    app: nginx
 spec:
   replicas: 1
   selector:
@@ -16,8 +12,11 @@ spec:
       labels:
         app: nginx
     spec:
+      securityContext:
+        runAsNonRoot: true       # <- still enforced
+        fsGroup: 0               # <- lets logs cache be group-writable (belt-&-braces)
       containers:
-      - name: nginx
-        image: nginx:latest
+      - name: web
+        image: nginxinc/nginx-unprivileged:1.27-alpine
         ports:
-        - containerPort: 80
+        - containerPort: 8080    # unpriv image listens on 8080
