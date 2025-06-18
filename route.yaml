@@ -2,9 +2,14 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: nginx
+  namespace: nginx-argo-test
+  labels:
+    app: nginx
 spec:
   to:
     kind: Service
-    name: nginx
+    name: nginx           # must match Service metadata.name
   port:
-    targetPort: 80
+    targetPort: http      # refers to the Service port *name*
+  tls:                    # comment out if you prefer plain HTTP
+    termination: edge     # edge-terminated HTTPS (router handles TLS)
