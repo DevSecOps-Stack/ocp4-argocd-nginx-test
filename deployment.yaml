@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
-  namespace: nginx-app
+  namespace: nginx-argo-test
   labels:
     app: nginx
 spec:
