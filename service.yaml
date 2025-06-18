@@ -2,9 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx
+  namespace: nginx-argo-test
+  labels:
+    app: nginx
 spec:
   selector:
-    app: nginx
+    app: nginx            # must match Deployment .spec.template.metadata.labels
   ports:
-  - port: 80
-    targetPort: 8080
+    - name: http
+      port: 80            # service port clients inside the cluster will hit
+      targetPort: 8080    # containerPort defined in the Deployment
+      protocol: TCP
+  type: ClusterIP         # default; no external IP
