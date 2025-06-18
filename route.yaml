@@ -1,14 +1,10 @@
-# route.yaml
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: nginx
-  namespace: nginx-argo-test
 spec:
   to:
     kind: Service
     name: nginx
   port:
     targetPort: 80
-  tls:
-    termination: edge
