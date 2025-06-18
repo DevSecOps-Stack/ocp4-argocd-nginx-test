@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx
-  namespace: nginx-app
+  namespace: nginx-argo-test
 spec:
   selector:
     app: nginx
