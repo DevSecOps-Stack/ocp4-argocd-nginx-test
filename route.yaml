@@ -3,7 +3,7 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: nginx
-  namespace: nginx-app
+  namespace: nginx-argo-test
 spec:
   to:
     kind: Service
