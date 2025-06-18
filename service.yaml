@@ -1,14 +1,10 @@
-# service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx
-  namespace: nginx-argo-test
 spec:
   selector:
     app: nginx
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-  type: ClusterIP
+  - port: 80
+    targetPort: 8080
